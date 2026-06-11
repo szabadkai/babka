@@ -1,60 +1,45 @@
-// All gameplay tuning lives here — the entire feel of the game is a pass over
-// this file. Units: px, seconds, radians. "Per step" factors assume the fixed
-// 60 Hz physics step.
-export const CFG = {
-  VIEW_W: 960,
-  VIEW_H: 600,
-  STEP: 1 / 60,
+// Chew Babka — Töltelékzápor. Minden tartalom és hangolás egy helyen.
+const CFG = {
+  W: 480, H: 720,
+  INK: '#1e0302',
+  CREAM: '#fff6df',
+  GROUND_Y: 640,
 
-  // Car handling
-  ACCEL: 480,
-  BRAKE_DECEL: 760,
-  REVERSE_ACCEL: 300,
-  MAX_SPEED: 560,
-  MAX_REVERSE: 170,
-  DRAG: 0.995,             // forward velocity kept per step
-  STEER_RATE: 3.2,         // rad/s at full lock
-  STEER_SPEED_REF: 130,    // speed at which steering reaches full authority
-  GRIP_ROAD: 0.86,         // lateral velocity kept per step (higher = driftier)
-  GRIP_GRASS: 0.95,
-  GRASS_MAX_FACTOR: 0.45,  // grass top speed as a fraction of MAX_SPEED
-  GRASS_SLOW: 0.96,        // per-step decel while above grass top speed
-  DRIFT_LAT: 90,           // |lateral speed| that counts as drifting
-  DRIFT_MIN_SPEED: 150,
-  CAR_RADIUS: 16,
-  BUMP_ELASTICITY: 0.5,
+  PLAYER: { w: 96, h: 118, speed: 430, lerp: 14 },
 
-  // Track geometry
-  SAMPLE_SPACING: 12,      // px between centerline samples
-  EDGE_TOLERANCE: 9,       // rumble strips still count as road
-  CHECKPOINTS: 8,
-  CHECKPOINT_WINDOW: 6,    // samples of slack when passing a checkpoint
+  // weight: dobási esély-súly, r: sugár pixelben
+  ITEMS: [
+    { key: 'csoki',     pts: 10, weight: 5, r: 27 },
+    { key: 'dio',       pts: 15, weight: 4, r: 27 },
+    { key: 'makos',     pts: 20, weight: 3, r: 29 },
+    { key: 'pisztacia', pts: 40, weight: 1, r: 29 },
+    { key: 'mazsola',   pts: 0,  weight: 3, r: 17, bad: true },
+  ],
 
-  // AI drivers
-  AI_COUNT: 4,
-  AI_STEER_GAIN: 2.6,
-  AI_CORNER_ACCEL: 850,    // comfortable lateral accel -> corner target speeds
-  AI_MIN_CORNER_SPEED: 150,
-  AI_BRAKE_REACH: 600,     // decel assumed when smoothing target speeds backward
-  AI_RUBBER_GAIN: 0.00004, // speed factor per px of gap to the player
-  AI_RUBBER_MIN: 0.92,
-  AI_RUBBER_MAX: 1.12,
+  RAMP_S: 90,              // ennyi másodperc alatt ér a nehézség a maximumra
+  SPAWN_MS: [1050, 420],   // dobási időköz: kezdő → végső
+  FALL: [135, 330],        // esési sebesség px/s: kezdő → végső
+  FALCON_S: [14, 24],      // a sólyom két átrepülése közti idő (s)
 
-  // Camera & juice
-  CAM_SMOOTH: 0.92,        // per-step retention toward the follow target
-  CAM_LOOKAHEAD: 0.35,     // seconds of velocity to look ahead
-  CAM_LOOKAHEAD_MAX: 150,
-  SHAKE_DECAY: 0.88,
+  LIVES: 3,
+  COMBO_STEP: 5, COMBO_MAX: 5,
 
-  COUNTDOWN: 3.5,
-  LAPS: 3,
+  TITLES: [                // [min. pont, cím] — csökkenő sorrendben
+    [800, 'A HALHATATLAN'],
+    [400, 'A RUSZTIKUS'],
+    [150, 'A SZAFTOS'],
+    [0,   'A MORZSA'],
+  ],
+
+  COPY: {
+    sub: 'töltelékzápor!',
+    how1: 'Kapd el a hulló tölteléket!',
+    how2: 'A mazsolát messzire kerüld!',
+    keys: '← →  /  egér  /  ujj      M némítás      P szünet',
+    start: 'SPACE vagy katt — kezdjük!',
+    again: 'SPACE vagy katt — újra!',
+    youAre: 'te vagy:',
+    paused: 'szünet',
+    over: 'elfogyott a babka...',
+  },
 };
-
-export const PLAYER = { name: 'You', color: '#ff5252' };
-
-export const RIVALS = [
-  { name: 'Bolt', color: '#448aff' },
-  { name: 'Ziggy', color: '#ffd740' },
-  { name: 'Nori', color: '#b388ff' },
-  { name: 'Pip', color: '#69f0ae' },
-];
