@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+.AppleDouble
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Node (ha valaha kell)
+node_modules/
+npm-debug.log*
+
+# Claude Code helyi beállítások
+.claude/settings.local.json
+
+# Pages build kimenet
+_site/
+
+# Naplók, ideiglenes fájlok
+*.log
+*.tmp

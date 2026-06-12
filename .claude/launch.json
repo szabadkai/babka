@@ -4,7 +4,7 @@
     {
       "name": "chewbabka",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8741", "--directory", "chewbabka"],
+      "runtimeArgs": ["-m", "http.server", "8741"],
       "port": 8741
     }
   ]
